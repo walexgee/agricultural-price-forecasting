@@ -171,7 +171,7 @@ st.markdown("""
 
 @st.cache_data
 def load_data():
-    with open("forecast_data.json") as f:
+    with open("uilfyp/forecast_data.json") as f:
         return json.load(f)
 
 data = load_data()
