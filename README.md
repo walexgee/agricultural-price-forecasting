@@ -1,81 +1,133 @@
-# agricultural-price-forecasting
-Forecasting Nigerian agricultural commodity prices using machine learning.
-# Agricultural Commodity Price Forecasting in Nigeria
+# Nigerian Agricultural Commodity Price Forecasting
 
-## Overview
+An interactive data science application for exploring historical agricultural commodity prices and comparing machine-learning and time-series forecasting models for Nigerian agricultural markets.
 
-This project explores the use of machine learning models to forecast agricultural commodity prices in Nigeria. It uses historical price data to examine price trends and generate predictions that can support a better understanding of agricultural market movements.
+**[Launch the Live App](https://agricultural-price-forecasting-kjqdtjcacpvqrun6r4pguw.streamlit.app/)** · **[View the Source Code](https://github.com/walexgee/agricultural-price-forecasting)**
 
-## Objectives
+## Project Overview
 
-* Analyze historical agricultural commodity prices.
-* Explore price trends and fluctuations over time.
-* Train and compare forecasting models.
-* Evaluate model performance using standard error metrics.
-* Generate future price forecasts.
+Agricultural commodity prices can fluctuate over time, making historical price analysis and forecasting useful for understanding market trends. This project applies data analysis and forecasting techniques to Nigerian agricultural commodity price records.
 
-## Dataset
+The project includes a Streamlit web application that allows users to explore historical price patterns, compare model performance, examine five-year forecasts, and review backward-validation results.
 
-The project uses historical Nigerian agricultural commodity price records spanning 2002–2025.
+This project was developed as an academic data science project and demonstrates the application of Python, time-series analysis, model evaluation, and interactive data visualization to an agricultural economics problem.
 
-The analysis focuses on ten commodities:
+## Live Application
 
-* Rice (Imported)
-* Maize (White)
-* Yam
-* Gari (White)
-* Beans (Red)
-* Tomatoes
-* Onions
-* Oil (Palm)
-* Sorghum
-* Groundnuts (Shelled)
+**Try the application:**
+https://agricultural-price-forecasting-kjqdtjcacpvqrun6r4pguw.streamlit.app/
 
-## Methodology
+The application has four main sections:
 
-The workflow includes data cleaning, date conversion, chronological sorting, monthly aggregation, missing-value handling, model training, and evaluation.
+* **Overview:** Explore the project and its agricultural price data.
+* **Model Comparison:** Compare Linear Regression, Support Vector Regression, and Prophet using model evaluation metrics.
+* **5-Year Forecast:** Explore projected commodity prices over a five-year horizon.
+* **Backward Validation:** Examine historical forecasting performance over a past period.
 
-## Models
+## Models and Evaluation
 
-Three models are compared:
+The project compares three forecasting approaches:
 
-* Linear Regression
-* Support Vector Regression (SVR)
-* Prophet
+| Model                           | Description                                                                       |
+| ------------------------------- | --------------------------------------------------------------------------------- |
+| Linear Regression (LR)          | Models relationships between input features and prices using a linear function.   |
+| Support Vector Regression (SVR) | Uses support vector methods to model relationships that may be nonlinear.         |
+| Prophet                         | A time-series forecasting model designed to capture temporal patterns and trends. |
 
-## Evaluation
+Model performance is evaluated using:
 
-Model performance is assessed using:
+* **Mean Absolute Error (MAE):** The average absolute difference between actual and predicted prices.
+* **Root Mean Squared Error (RMSE):** The square root of the average squared prediction error, giving larger errors more influence.
+* **Mean Absolute Percentage Error (MAPE):** The average absolute prediction error expressed as a percentage, subject to limitations when actual values are zero or close to zero.
 
-* Mean Absolute Error (MAE)
-* Root Mean Squared Error (RMSE)
-* Mean Absolute Percentage Error (MAPE)
+The metrics support a quantitative comparison of forecasting performance. The most suitable model should be identified from the evaluation results rather than assumed in advance.
 
-The models are evaluated on historical observations not used for training.
+## Technology Stack
 
-## Technologies
+* **Python** — data processing and model implementation
+* **Pandas** — data manipulation and preprocessing
+* **Scikit-learn** — machine-learning models and evaluation
+* **Prophet** — time-series forecasting
+* **Streamlit** — interactive web application
+* **Plotly** — interactive charts and data visualization
 
-* Python
-* pandas
-* NumPy
-* Matplotlib
-* scikit-learn
-* Prophet
-* Jupyter Notebook
-* Streamlit (for the interactive application)
+## Running the Project Locally
 
-## Project Structure
+### 1. Clone the repository
 
-The repository contains the Jupyter Notebook used for data processing, analysis, model training, and evaluation.
+```bash
+git clone https://github.com/walexgee/agricultural-price-forecasting.git
+cd agricultural-price-forecasting
+```
 
-## Limitations
+### 2. Create and activate a virtual environment
 
-Forecasts are based on historical patterns and may not capture unexpected events, policy changes, weather shocks, or other external factors that influence agricultural prices.
+```bash
+python -m venv .venv
+```
+
+On Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+### 3. Install the dependencies
+
+Install the project's dependencies using its `requirements.txt` file, if present:
+
+```bash
+pip install -r requirements.txt
+```
+
+If the repository does not contain a `requirements.txt` file, create one using the packages and versions required by the application before following this step.
+
+### 4. Start the Streamlit application
+
+From the repository root, run:
+
+```bash
+streamlit run uilfyp/app.py
+```
+
+If the application uses files stored in `uilfyp/`, keep the repository's directory structure intact when running it.
+
+## Repository Structure
+
+The application and its supporting data are located in the `uilfyp/` directory.
+
+```text
+agricultural-price-forecasting/
+└── uilfyp/
+    ├── app.py
+    └── forecast_data.json
+```
+
+The directory listing above shows the main application files; other project files, datasets, notebooks, and dependencies may also be present in the repository.
+
+## Scope and Limitations
+
+Forecasts are estimates based on the historical information and modelling assumptions used in the project. They are not guaranteed future prices.
+
+External influences such as inflation, exchange rates, government policies, weather conditions, transportation costs, and market disruptions may affect actual prices. Unless these factors are explicitly represented in the model, their future effects cannot be reliably inferred from the forecasts alone.
+
+Backward-validation results provide evidence about historical forecasting performance, but they do not guarantee the same level of accuracy in future periods.
 
 ## Future Improvements
 
-Potential improvements include adding more explanatory variables, testing model performance across different time periods, and improving the accessibility of the forecasting application.
+Potential extensions include:
 
-## Author
+* Incorporating relevant external economic and environmental variables.
+* Evaluating models across different commodities and market locations.
+* Adding automated model testing and reproducible evaluation.
+* Improving forecast uncertainty reporting and model monitoring.
 
-LAWAL RIDWANULAHI OLAWALE.
+LAWAL RIDWANULAHI OLAWALE
+
+**Walexgee**
+
+GitHub: https://github.com/walexgee
+
+---
+
+*This project is intended for academic demonstration and exploratory analysis. Forecasts should not be treated as guaranteed market prices or financial advice.*
