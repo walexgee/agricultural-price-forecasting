@@ -245,7 +245,7 @@ if page == "📊 Overview":
 
     st.dataframe(
         pivot.style.format("{:.1f}", subset=["LR","SVR","Prophet"])
-                   .applymap(color_mape, subset=["LR","SVR","Prophet"]),
+                   .map(color_map, subset=["LR", "SVR", "Prophet"])
         use_container_width=True
     )
 
