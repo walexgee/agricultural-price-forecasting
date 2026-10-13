@@ -279,6 +279,50 @@ MODEL_COLORS = {
 }
 
 HIST_COLOR = "#829087"
+
+
+def apply_chart_style(fig, height=420):
+    fig.update_layout(
+        height=height,
+        paper_bgcolor="#F7F5EC",
+        plot_bgcolor="#FFFDF7",
+        font=dict(
+            family="Arial, sans-serif",
+            color="#24352D",
+            size=12
+        ),
+        title_font=dict(
+            family="Arial, sans-serif",
+            size=18,
+            color="#173F35"
+        ),
+        legend=dict(
+            bgcolor="rgba(255,253,247,0.8)",
+            borderwidth=0
+        ),
+        margin=dict(l=20, r=20, t=60, b=30),
+        hoverlabel=dict(
+            bgcolor="#FFFDF7",
+            font_color="#24352D"
+        )
+    )
+
+    fig.update_xaxes(
+        showgrid=False,
+        showline=True,
+        linecolor="#D8DED3",
+        zeroline=False
+    )
+
+    fig.update_yaxes(
+        showgrid=True,
+        gridcolor="#E2E5D9",
+        gridwidth=1,
+        showline=False,
+        zeroline=False
+    )
+
+    return fig
 # ── Sidebar ──────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("## 🌾 Navigation")
@@ -315,6 +359,7 @@ if page == "📊 Overview":
         xaxis_title='Date', yaxis_title='Price (NGN/kg)',
         legend=dict(bgcolor='rgba(0,0,0,0)')
     )
+    fig = apply_chart_style(fig)
     st.plotly_chart(fig, use_container_width=True)
 
     col1, col2, col3, col4 = st.columns(4)
@@ -405,6 +450,7 @@ elif page == "🔍 Model Comparison":
         xaxis_title='Date', yaxis_title='Price (NGN/kg)',
         legend=dict(bgcolor='rgba(0,0,0,0)', orientation='h', y=1.1)
     )
+    fig = apply_chart_style(fig)
     st.plotly_chart(fig, use_container_width=True)
 
     st.markdown('<div class="section-header">📊 Evaluation Metrics</div>', unsafe_allow_html=True)
