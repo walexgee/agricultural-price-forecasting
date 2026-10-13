@@ -12,173 +12,273 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+
 st.markdown("""
 <style>
+    /* ===== AGRIPRICE: FOREST GREEN + CREAM THEME ===== */
+    :root {
+        --forest: #173F35;
+        --forest-light: #24594A;
+        --cream: #F7F5EC;
+        --card: #FFFDF7;
+        --gold: #C49A45;
+        --text: #24352D;
+        --muted: #6B796F;
+        --border: #E2E5D9;
+        --green-soft: #E8F1E9;
+    }
 
-    /* Main Background */
+    /* Main application */
     [data-testid="stAppViewContainer"] {
-        background: #ffffff;
+        background: var(--cream);
+        color: var(--text);
+    }
+
+    [data-testid="stHeader"] {
+        background: rgba(247, 245, 236, 0.95);
+    }
+
+    .block-container {
+        max-width: 1500px;
+        padding-top: 2rem;
+        padding-bottom: 3rem;
     }
 
     /* Sidebar */
     [data-testid="stSidebar"] {
-        background: #2563eb;
-        border-right: 1px solid #dbeafe;
+        background: var(--forest);
+        border-right: 1px solid #2E5A4D;
     }
 
     [data-testid="stSidebar"] * {
-        color: white !important;
+        color: #F8F6ED;
     }
 
-    /* Titles */
+    [data-testid="stSidebar"] hr {
+        border-color: #47685B;
+    }
+
+    [data-testid="stSidebar"] [data-baseweb="select"] > div {
+        background: #24594A;
+        border-color: #648477;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stRadio"] label {
+        padding: 0.45rem 0.6rem;
+        border-radius: 8px;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stRadio"] label:hover {
+        background: rgba(255,255,255,0.09);
+    }
+
+    /* Page title and subtitle */
     .main-title {
-        font-size: 2.1rem;
+        font-size: clamp(1.8rem, 3vw, 2.65rem);
         font-weight: 800;
-        color: #111827;
-        text-align: center;
-        margin-bottom: 0.2rem;
+        color: var(--forest);
+        text-align: left;
+        letter-spacing: -0.035em;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
     }
 
     .sub-title {
-        font-size: 1rem;
-        color: #6b7280;
-        text-align: center;
+        font-size: 0.98rem;
+        color: var(--muted);
+        text-align: left;
+        line-height: 1.7;
         margin-bottom: 2rem;
     }
 
-    /* Metric Cards */
+    /* Metric cards */
     .metric-card {
-        background: #ffffff;
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        padding: 1.1rem 1.4rem;
-        text-align: center;
-        margin-bottom: 0.5rem;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-top: 3px solid var(--forest-light);
+        border-radius: 14px;
+        padding: 1.25rem 1.1rem;
+        text-align: left;
+        min-height: 115px;
+        margin-bottom: 0.6rem;
+        box-shadow: 0 4px 14px rgba(28, 54, 41, 0.045);
     }
 
     .metric-label {
-        font-size: 0.78rem;
-        color: #6b7280;
-        font-weight: 600;
-        letter-spacing: 0.05em;
+        font-size: 0.73rem;
+        color: var(--muted);
+        font-weight: 700;
+        letter-spacing: 0.055em;
         text-transform: uppercase;
+        line-height: 1.5;
     }
 
     .metric-value {
-        font-size: 1.7rem;
+        font-size: clamp(1.35rem, 2vw, 1.85rem);
         font-weight: 800;
-        color: #2563eb;
-        margin-top: 0.15rem;
+        color: var(--forest);
+        margin-top: 0.35rem;
+        overflow-wrap: anywhere;
     }
 
     .metric-value.green {
-        color: #16a34a;
+        color: #287449;
     }
 
     .metric-value.yellow {
-        color: #ca8a04;
+        color: #9B711E;
     }
 
     .metric-value.red {
-        color: #dc2626;
+        color: #B34C43;
     }
 
-    /* Best Model Card */
+    /* Section headings */
+    .section-header {
+        font-size: 1.18rem;
+        font-weight: 800;
+        color: var(--forest);
+        border-left: 4px solid var(--gold);
+        padding: 0.25rem 0 0.25rem 0.8rem;
+        margin: 2rem 0 1rem;
+    }
+
+    /* Best model card */
     .winner-badge {
-        background: #f8fafc;
-        border: 1px solid #16a34a;
-        border-radius: 10px;
-        padding: 0.9rem 1.2rem;
-        margin: 0.5rem 0;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        background: var(--green-soft);
+        border: 1px solid #C8DCCB;
+        border-radius: 12px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
     }
 
     .winner-badge h4 {
-        color: #16a34a;
+        color: var(--forest);
         margin: 0;
-        font-size: 0.85rem;
-        letter-spacing: 0.08em;
+        font-size: 0.8rem;
+        letter-spacing: 0.07em;
     }
 
     .winner-badge p {
-        color: #111827;
-        margin: 0.3rem 0 0;
-        font-size: 1rem;
-        font-weight: 700;
+        color: var(--text);
+        margin: 0.45rem 0 0;
+        font-size: 1.05rem;
+        font-weight: 750;
     }
 
-    /* Section Headers */
-    .section-header {
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: #111827;
-        border-left: 4px solid #2563eb;
-        padding-left: 0.7rem;
-        margin: 1.5rem 0 1rem;
+    /* Information and warning panels */
+    .info-box, .tuning-box, .warn-box {
+        border-radius: 12px;
+        padding: 1rem 1.15rem;
+        font-size: 0.91rem;
+        line-height: 1.75;
+        margin: 1rem 0;
     }
 
-    /* Information Boxes */
     .info-box {
-        background: #eff6ff;
-        border: 1px solid #3b82f6;
-        border-radius: 8px;
-        padding: 0.8rem 1rem;
-        color: #1e40af;
-        font-size: 0.88rem;
-        margin: 1rem 0;
-    }
-
-    .warn-box {
-        background: #fffbeb;
-        border: 1px solid #f59e0b;
-        border-radius: 8px;
-        padding: 0.8rem 1rem;
-        color: #92400e;
-        font-size: 0.88rem;
-        margin: 1rem 0;
+        background: #EAF1E9;
+        border: 1px solid #D0DFCE;
+        color: #294B39;
     }
 
     .tuning-box {
-        background: #ecfdf5;
-        border: 1px solid #10b981;
-        border-radius: 8px;
-        padding: 0.8rem 1rem;
-        color: #065f46;
-        font-size: 0.88rem;
-        margin: 1rem 0;
+        background: #F5F0DF;
+        border: 1px solid #E6D8B3;
+        color: #695326;
     }
 
-    /* Form Elements */
-    div[data-testid="stSelectbox"] label,
-    div[data-testid="stRadio"] label {
-        color: #111827 !important;
+    .warn-box {
+        background: #FBEBE5;
+        border: 1px solid #EAC9BD;
+        color: #884538;
     }
 
-    /* Tabs */
+    /* Tables and dataframes */
+    [data-testid="stDataFrame"],
+    [data-testid="stTable"] {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    /* Select boxes and other form controls */
+    [data-testid="stSelectbox"] label,
+    [data-testid="stRadio"] label {
+        font-weight: 650;
+    }
+
+    /* Buttons */
+    .stButton > button {
+        background: var(--forest);
+        color: white;
+        border: 1px solid var(--forest);
+        border-radius: 9px;
+        font-weight: 650;
+        padding: 0.55rem 1rem;
+        transition: background 0.2s ease;
+    }
+
+    .stButton > button:hover {
+        background: var(--forest-light);
+        color: white;
+        border-color: var(--forest-light);
+    }
+
+    /* Tabs, if used */
     .stTabs [data-baseweb="tab"] {
-        color: #6b7280;
-        font-weight: 600;
+        color: var(--muted);
+        font-weight: 650;
     }
 
     .stTabs [aria-selected="true"] {
-        color: #2563eb !important;
-        font-weight: 700;
+        color: var(--forest) !important;
+        border-bottom-color: var(--gold) !important;
     }
 
+    /* Footer */
+    .app-footer {
+        margin-top: 3rem;
+        padding-top: 1.2rem;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    /* Smaller screens */
+    @media (max-width: 768px) {
+        .block-container {
+            padding-top: 1rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .metric-card {
+            padding: 0.9rem;
+        }
+
+        .sub-title {
+            font-size: 0.9rem;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
-
 @st.cache_data
 def load_data():
     with open("uilfyp/forecast_data.json") as f:
         return json.load(f)
 
 data = load_data()
-COMMODITIES = list(data.keys())
-MODEL_COLORS = {"LR":"#60a5fa", "SVR":"#f59e0b", "Prophet":"#a78bfa"}
-HIST_COLOR   = "#94a3b8"
 
+COMMODITIES = list(data.keys())
+
+MODEL_COLORS = {
+    "LR": "#24594A",
+    "SVR": "#C49A45",
+    "Prophet": "#7295A0"
+}
+
+HIST_COLOR = "#829087"
 # ── Sidebar ──────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("## 🌾 Navigation")
